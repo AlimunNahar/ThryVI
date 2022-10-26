@@ -7,7 +7,7 @@ const Blog = () => {
     <div className="overflow-x-hidden">
       <div className="hero bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500">
         <div className="hero-overlay bg-opacity-60"></div>
-        <h1 className="mb-5 text-3xl lg:text-5xl font-bold py-6 text-center">
+        <h1 className="mb-5 text-3xl lg:text-5xl font-bold py-6 text-center text-white">
           Some Common Question & Answers
         </h1>
       </div>
@@ -212,7 +212,7 @@ const Blog = () => {
                   className="input input-bordered w-9/12 h-16"
                 />
                 <Link to="/register">
-                  <span className="h-16">SIGN UP</span>
+                  <span className="h-16">SEND</span>
                 </Link>
               </label>
             </div>
