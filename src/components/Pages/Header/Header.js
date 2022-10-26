@@ -67,6 +67,9 @@ const Header = () => {
               <Link to="/blog">Blog</Link>
             </li>
             <li>
+              <Link to="/">FAQ</Link>
+            </li>
+            <li>
               <Link className="btn text-center my-5" to="/login">
                 Login
               </Link>
@@ -113,6 +116,9 @@ const Header = () => {
           <li>
             <Link to="/blog">Blog</Link>
           </li>
+          <li>
+            <Link to="/">FAQ</Link>
+          </li>
         </ul>
       </div>
       <div className="navbar-end">
@@ -131,7 +137,7 @@ const Header = () => {
             </button>
           )}
         </div>
-        <p className="mx-5 hidden"> Welcome! {"Moon"}</p>
+        {/* <p className="mx-5 hidden"> Welcome! {"Moon"}</p> */}
         <div className="hidden lg:block">
           <Link className="btn mx-4" to="/login">
             Login
