@@ -3,11 +3,7 @@ import { routes } from "./components/Routes/PublicRoute/Routes";
 import "./App.css";
 
 function App() {
-  return (
-    <div>
-      <RouterProvider router={routes} />
-    </div>
-  );
+  return <RouterProvider router={routes} />;
 }
 
 export default App;
