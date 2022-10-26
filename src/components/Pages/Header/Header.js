@@ -76,7 +76,10 @@ const Header = () => {
             </li>
           </ul>
         </div>
-        <Link className="btn btn-ghost normal-case text-2xl" to="/">
+        <Link
+          className="btn btn-ghost normal-case text-3xl subpixel-antialiased font-bold text-black italic"
+          to="/"
+        >
           ThryVI
         </Link>
       </div>
