@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import AnchorLink from "react-anchor-link-smooth-scroll";
 
 const Blog = () => {
   return (
@@ -12,21 +13,22 @@ const Blog = () => {
       </div>
 
       <div className="flex flex-row text-center invisible lg:visible">
-        <Link to="" className="btn grow">
+        <AnchorLink href="#cors" className="btn grow">
           Cors
-        </Link>
-        <Link to="" className="btn grow">
+        </AnchorLink>
+        <AnchorLink href="#firebase" className="btn grow ">
           Firebase & Authentication
-        </Link>
-        <Link to="" className="btn grow">
+        </AnchorLink>
+        <AnchorLink href="#private-route" className="btn grow">
           Private Route
-        </Link>
-        <Link to="" className="btn grow">
+        </AnchorLink>
+        <AnchorLink href="#node" className="btn grow">
           Node
-        </Link>
+        </AnchorLink>
       </div>
 
       <div
+        id="cors"
         tabIndex={0}
         className="collapse collapse-plus border border-base-300 bg-base-100 rounded-box mt-10 w-5/6 mx-auto"
       >
@@ -57,6 +59,7 @@ const Blog = () => {
       </div>
 
       <div
+        id="firebase"
         tabIndex={0}
         className="collapse collapse-plus border border-base-300 bg-base-100 rounded-box mt-10 w-5/6 mx-auto"
       >
@@ -105,6 +108,7 @@ const Blog = () => {
       </div>
 
       <div
+        id="private-route"
         tabIndex={0}
         className="collapse collapse-plus border border-base-300 bg-base-100 rounded-box mt-10 w-5/6 mx-auto"
       >
@@ -147,6 +151,7 @@ const Blog = () => {
       </div>
 
       <div
+        id="node"
         tabIndex={0}
         className="collapse collapse-plus border border-base-300 bg-base-100 rounded-box mt-10 w-5/6 mx-auto"
       >
