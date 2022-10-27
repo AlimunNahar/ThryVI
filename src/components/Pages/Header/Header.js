@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { MdLightMode, MdDarkMode } from "react-icons/md";
 import { themeChange } from "theme-change";
 import { AuthContext } from "../../Contexts/AuthProvider/AuthProvider";
-import { FaUser } from "react-icons/fa";
 
 const Header = () => {
   const [isDarkMode, setDarkMode] = useState(true);
@@ -78,13 +77,25 @@ const Header = () => {
             <li>
               <Link to="/">FAQ</Link>
             </li>
-            <li>
-              <Link className="btn text-center my-5" to="/login">
-                Login
-              </Link>
-              <Link to="/register" className="btn">
-                Register
-              </Link>
+            <li className="">
+              {user?.uid ? (
+                <>
+                  <button onClick={handleLogOut} className="btn">
+                    Log Out
+                  </button>
+                </>
+              ) : (
+                <>
+                  <div className="flex flex-col">
+                    <Link className="btn" to="/login">
+                      Login
+                    </Link>
+                    <Link to="/register" className="btn">
+                      Register
+                    </Link>
+                  </div>
+                </>
+              )}
             </li>
           </ul>
         </div>
@@ -146,49 +157,44 @@ const Header = () => {
             </button>
           )}
         </div>
-        <Link to="/private">
-          {user?.photoURL ? (
-            <div
-              className="tooltip tooltip-bottom"
-              data-tip={user?.displayName}
-            >
-              <img
-                className="rounded-full ring ring-success"
-                style={{ height: "50px", width: "50px" }}
-                src={user?.photoURL}
-                alt="avatar"
-              />
-            </div>
-          ) : (
-            <></>
-          )}
-        </Link>
-        <>
+        <div>
           {user?.uid ? (
-            <>
+            <div className="lg:flex hidden">
+              <div
+                className="tooltip tooltip-bottom"
+                data-tip={user?.displayName}
+              >
+                <img
+                  className="rounded-full ring ring-success h-16 w-16"
+                  src={user?.photoURL}
+                  alt="avatar"
+                />
+              </div>
               <button
                 onClick={handleLogOut}
-                className="btn mx-4 invisible lg:visible"
+                className="btn mx-4 hidden lg:block"
               >
                 Log Out
               </button>
-            </>
+            </div>
           ) : (
             <>
               <div className="hidden lg:block">
                 <Link className="btn mx-4" to="/login">
                   Login
                 </Link>
-                <Link to="/register" className="btn mr-4 invisible lg:visible">
+                <Link to="/register" className="btn mr-4">
                   Register
                 </Link>
               </div>
             </>
           )}
-        </>
+        </div>
       </div>
     </div>
   );
 };
+
+// style={{ height: "50px", width: "50px" }}
 
 export default Header;

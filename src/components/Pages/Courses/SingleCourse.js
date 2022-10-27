@@ -1,12 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link, useLoaderData } from "react-router-dom";
 import { AiOutlineDownload, AiOutlineStar } from "react-icons/ai";
 import { BsFillPeopleFill } from "react-icons/bs";
 import { GiDuration } from "react-icons/gi";
 import { ImPriceTag } from "react-icons/im";
+import { AuthContext } from "../../Contexts/AuthProvider/AuthProvider";
 
 const SingleCourse = () => {
   const singleCourse = useLoaderData();
+
+  const { user, logOut } = useContext(AuthContext);
   // console.log(singleCourse);
 
   return (
@@ -96,9 +99,10 @@ const SingleCourse = () => {
                 <p className="text-justify">{c.course_details}</p>
 
                 <div className="card-actions justify-end">
-                  {/* condition hobe ekhane jodi logged in thake */}
                   <button className="btn btn-outline">
-                    <Link to="/login">Get Premium Access</Link>
+                    <Link to={`/details/${c.course_id}`}>
+                      Get Premium Access
+                    </Link>
                   </button>
                   <button className="btn btn-outline">
                     <Link to="/courses">Return</Link>
