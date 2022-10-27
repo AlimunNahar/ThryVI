@@ -18,18 +18,22 @@ export const routes = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
-        loader: () => fetch("http://localhost:5000/"),
+        loader: () =>
+          fetch("https://assignment-10-server-cyan-five.vercel.app/"),
       },
       {
         path: "/courses",
         element: <Courses />,
-        loader: () => fetch("http://localhost:5000/details"),
+        loader: () =>
+          fetch("https://assignment-10-server-cyan-five.vercel.app/details"),
       },
       {
         path: "/course/:id",
         element: <SingleCourse />,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/course/${params.id}`),
+          fetch(
+            `https://assignment-10-server-cyan-five.vercel.app/course/${params.id}`
+          ),
       },
       {
         path: "/details/:id",
@@ -39,7 +43,9 @@ export const routes = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/details/${params.id}`),
+          fetch(
+            `https://assignment-10-server-cyan-five.vercel.app/details/${params.id}`
+          ),
       },
       {
         path: "/blog",

@@ -7,7 +7,7 @@ const LeftSideBar = () => {
   // console.log(sideList);
 
   useEffect(() => {
-    fetch("http://localhost:5000/courses")
+    fetch("https://assignment-10-server-cyan-five.vercel.app/courses")
       .then((res) => res.json())
       .then((data) => setSideList(data));
   }, []);

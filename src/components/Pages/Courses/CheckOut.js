@@ -3,7 +3,7 @@ import { useLoaderData } from "react-router-dom";
 
 const CheckOut = () => {
   const details = useLoaderData();
-  console.log(details);
+  // console.log(details);
   return (
     <div
       className="hero min-h-screen"
