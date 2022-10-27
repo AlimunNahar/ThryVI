@@ -1,12 +1,10 @@
-import React, { Component } from "react";
+import React from "react";
 import { Link, useLoaderData } from "react-router-dom";
 import { AiOutlineDownload, AiOutlineStar } from "react-icons/ai";
 import { BsFillPeopleFill } from "react-icons/bs";
 import { GiDuration } from "react-icons/gi";
 import { ImPriceTag } from "react-icons/im";
-import Printer, { print } from "react-pdf-print";
 
-const ids = ["1"];
 
 const SingleCourse = () => {
   const singleCourse = useLoaderData();
@@ -29,13 +27,12 @@ const SingleCourse = () => {
             <p className="mb-5">
               Click the button below to download the pdf file.
             </p>
-            <btn onClick={() => print(ids)} className="btn btn-primary">
+            <btn className="btn btn-primary">
               <AiOutlineDownload className="mr-2 text-2xl" /> PDF
             </btn>
           </div>
         </div>
       </div>
-      <Printer>
         {singleCourse.map((c) => (
           <div className="flex flex-col mx-auto w-8/12 my-16" key={c.course_id}>
             <div className="text-center text-xl lg:text-3xl mb-10">
