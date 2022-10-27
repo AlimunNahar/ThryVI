@@ -8,6 +8,7 @@ import Home from "../../Pages/Home/Home";
 import Login from "../../Pages/Login/Login";
 import Register from "../../Pages/Register/Register";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
+import Error from "../../Pages/Error";
 
 export const routes = createBrowserRouter([
   {
@@ -53,5 +54,6 @@ export const routes = createBrowserRouter([
         element: <Register />,
       },
     ],
+    errorElement: <Error />,
   },
 ]);

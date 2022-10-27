@@ -1,15 +1,12 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Link, useLoaderData } from "react-router-dom";
 import { AiOutlineDownload, AiOutlineStar } from "react-icons/ai";
 import { BsFillPeopleFill } from "react-icons/bs";
 import { GiDuration } from "react-icons/gi";
 import { ImPriceTag } from "react-icons/im";
-import { AuthContext } from "../../Contexts/AuthProvider/AuthProvider";
 
 const SingleCourse = () => {
   const singleCourse = useLoaderData();
-
-  const { user, logOut } = useContext(AuthContext);
   // console.log(singleCourse);
 
   return (
