@@ -28,8 +28,19 @@ const Register = () => {
             </label>
             <input
               type="text"
-              name="text"
+              name="name"
               placeholder="full name"
+              className="input input-bordered"
+            />
+          </div>
+          <div className="form-control">
+            <label className="label">
+              <span className="label-text">Photo URL</span>
+            </label>
+            <input
+              type="text"
+              name="photoURL"
+              placeholder="photo url"
               className="input input-bordered"
             />
           </div>

@@ -42,7 +42,7 @@ const Header = () => {
               <Link to="/">Home</Link>
             </li>
             <li>
-              <Link to="/course-name">Courses</Link>
+              <Link to="/courses">Courses</Link>
             </li>
             <li tabIndex={0}>
               <Link className="justify-between">
@@ -92,7 +92,7 @@ const Header = () => {
             <Link to="/">Home</Link>
           </li>
           <li>
-            <Link to="/course-name">Courses</Link>
+            <Link to="/courses">Courses</Link>
           </li>
           <li tabIndex={0}>
             <Link to="/">
