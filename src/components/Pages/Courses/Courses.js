@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useLoaderData } from "react-router-dom";
+import { useLoaderData } from "react-router-dom";
 import AllCourse from "./AllCourse";
 import LeftSideBar from "./LeftSideBar";
 
@@ -8,14 +8,16 @@ const Courses = () => {
   // console.log(courseDetails);
 
   return (
-    <div className="block my-10 mx-5 lg:grid grid-cols-12 gap-10">
+    <div className="block my-10 mx-5 lg:grid grid-cols-12 gap-5">
       <div className="col-span-4">
-        <Link to={``}>
-          <LeftSideBar />
-        </Link>
+        <LeftSideBar />
       </div>
       <div className="col-span-8">
-        <AllCourse courses={courseDetails}></AllCourse>
+        <h2 className="text-xl">All Courses</h2>
+        <div className="divider my-4" />
+        {courseDetails.map((courses) => (
+          <AllCourse key={courses.course_id} courses={courses}></AllCourse>
+        ))}
       </div>
     </div>
   );

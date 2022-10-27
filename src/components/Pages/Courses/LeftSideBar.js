@@ -18,12 +18,12 @@ const LeftSideBar = () => {
       <div className="divider my-1" />
       {sideList.map((d) => (
         <ul className="py-3 menu " key={d.id}>
-          <NavLink className="bordered">
+          <li className="bordered">
             <Link to={`/course/${d.id}`}>{d.title}</Link>
-          </NavLink>
+          </li>
         </ul>
       ))}
-      <div>
+      <div className="invisible lg:visible">
         <div>
           <h1 className="text-xl mt-8">Share</h1>
           <div className="divider my-1" />
