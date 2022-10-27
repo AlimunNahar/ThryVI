@@ -1,12 +1,48 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import {
-  AiOutlineMail,
-  AiOutlineGoogle,
-  AiOutlineGithub,
-} from "react-icons/ai";
+import React, { useContext, useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import OtherLogin from "../OtherLogin/OtherLogin";
+import { AuthContext } from "../../Contexts/AuthProvider/AuthProvider";
+import toast from "react-hot-toast";
 
 const Login = () => {
+  const [error, setError] = useState("");
+  const { signIn, setLoading } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const from = location.state?.from?.pathname || "/";
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const email = form.email.value;
+    const password = form.password.value;
+
+    // console.log(name, photoURL, email, password);
+
+    signIn(email, password)
+      .then((result) => {
+        const user = result.user;
+        // console.log(user);
+        form.reset();
+        setError("");
+        if (user.emailVerified) {
+          navigate(from, { replace: true });
+        } else {
+          toast.error(
+            "Your email is not verified. Please verify your email address."
+          );
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+        setError(error.message);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  };
+
   return (
     <div
       className="min-h-screen bg-base-200 px-5"
@@ -20,7 +56,10 @@ const Login = () => {
           Join with the millions of learners to learn for free!
         </p>
       </div>
-      <form className="card mx-auto mt-12 mb-10 w-full lg:w-1/2 shadow-2xl bg-base-100">
+      <form
+        onSubmit={handleSubmit}
+        className="card mx-auto mt-12 mb-10 w-full lg:w-1/2 shadow-2xl bg-base-100"
+      >
         <div className="card-body">
           <div className="form-control">
             <label className="label">
@@ -49,6 +88,7 @@ const Login = () => {
               </Link>
             </label>
           </div>
+          <div className="text-red-700">{error}</div>
           <div className="form-control mt-6">
             <button className="btn btn-primary">Log in</button>
           </div>
@@ -67,23 +107,7 @@ const Login = () => {
       </form>
       <div className="mx-5 pb-20 lg:mx-auto text-white w-1/2">
         <h1 className="text-xl mb-10">Or sign in using:</h1>
-        <div className="flex flex-row gap-3">
-          <Link to="">
-            <button className="btn btn-outline text-3xl">
-              <AiOutlineMail />
-            </button>
-          </Link>
-          <Link to="">
-            <button className="btn btn-outline text-3xl">
-              <AiOutlineGoogle />
-            </button>
-          </Link>
-          <Link to="">
-            <button className="btn btn-outline text-3xl">
-              <AiOutlineGithub />
-            </button>
-          </Link>
-        </div>
+        <OtherLogin />
       </div>
     </div>
   );

@@ -1,12 +1,58 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
-import {
-  AiOutlineMail,
-  AiOutlineGoogle,
-  AiOutlineGithub,
-} from "react-icons/ai";
+import { AuthContext } from "../../Contexts/AuthProvider/AuthProvider";
+import OtherLogin from "../OtherLogin/OtherLogin";
+import toast from "react-hot-toast";
 
 const Register = () => {
+  const { createUser, updateUserProfile, verifyEmail } =
+    useContext(AuthContext);
+
+  const [error, setError] = useState("");
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const name = form.name.value;
+    const photoURL = form.photoURL.value;
+    const email = form.email.value;
+    const password = form.password.value;
+
+    // console.log(name, photoURL, email, password);
+
+    createUser(email, password)
+      .then((result) => {
+        const user = result.user;
+        // console.log(user);
+        setError("");
+        form.reset();
+        handleUpdateUserProfile(name, photoURL);
+        handleEmailVerification();
+        toast.success("Please verify your email address.");
+      })
+      .catch((error) => {
+        console.error(error);
+        setError(error.message);
+      });
+  };
+
+  const handleUpdateUserProfile = (name, photoURL) => {
+    const profile = {
+      displayName: name,
+      photoURL: photoURL,
+    };
+    updateUserProfile(profile)
+      .then(() => {})
+      .catch((e) => console.error(e));
+  };
+
+  const handleEmailVerification = () => {
+    // console.log(event.target.checked);
+    verifyEmail()
+      .then(() => {})
+      .catch((e) => console.error(e));
+  };
+
   return (
     <div
       className="min-h-screen bg-base-200 px-5"
@@ -20,7 +66,10 @@ const Register = () => {
           Join with the millions of learners to learn for free!
         </p>
       </div>
-      <form className="card mx-auto mt-12 mb-10 w-full lg:w-1/2 shadow-2xl bg-base-100">
+      <form
+        onSubmit={handleSubmit}
+        className="card mx-auto mt-12 mb-10 w-full lg:w-1/2 shadow-2xl bg-base-100"
+      >
         <div className="card-body">
           <div className="form-control">
             <label className="label">
@@ -74,6 +123,7 @@ const Register = () => {
           <div className="form-control mt-6">
             <button className="btn btn-primary">Register</button>
           </div>
+          <p>{error}</p>
           <div className="py-3">
             <p>
               Already have an account? &nbsp;&nbsp;
@@ -89,23 +139,7 @@ const Register = () => {
       </form>
       <div className="mx-5 pb-20 lg:mx-auto text-white w-1/2">
         <h1 className="text-xl mb-10">Or sign up using:</h1>
-        <div className="flex flex-row gap-3">
-          <Link to="">
-            <button className="btn btn-outline text-3xl text-white">
-              <AiOutlineMail />
-            </button>
-          </Link>
-          <Link to="">
-            <button className="btn btn-outline text-3xl text-white">
-              <AiOutlineGoogle />
-            </button>
-          </Link>
-          <Link to="">
-            <button className="btn btn-outline text-3xl text-white">
-              <AiOutlineGithub />
-            </button>
-          </Link>
-        </div>
+        <OtherLogin />
       </div>
     </div>
   );

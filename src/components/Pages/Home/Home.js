@@ -21,7 +21,7 @@ const Home = () => {
                 Watch and read stories from the ThryVI community.
               </p>
             </div>
-            <Link to="/course-name">
+            <Link to="/courses">
               <button className="btn btn-active mt-10">
                 Explore more &nbsp;&nbsp; <FiArrowRight />
               </button>

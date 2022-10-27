@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const AllCourse = ({ courses }) => {
-  const { _id, Course_title, course_id, img, course_details } = courses;
+  const { _id, Course_title, img, course_details } = courses;
   // console.log(Course_title);
 
   return (
@@ -19,10 +19,7 @@ const AllCourse = ({ courses }) => {
             {course_details.length >= 100 ? (
               <>
                 {course_details.slice(0, 100) + "... "}
-                <Link
-                  to={`/course/${course_details._id}`}
-                  className="text-indigo-500"
-                >
+                <Link to={`/course/${_id}`} className="text-indigo-500">
                   &nbsp;Read More
                 </Link>
               </>
@@ -30,10 +27,7 @@ const AllCourse = ({ courses }) => {
               <>{course_details}</>
             )}
           </p>
-          <Link
-            to={`/course/${course_details._id}`}
-            className="btn btn-primary"
-          >
+          <Link to={`/course/${_id}`} className="btn btn-primary">
             Learn More
           </Link>
         </div>

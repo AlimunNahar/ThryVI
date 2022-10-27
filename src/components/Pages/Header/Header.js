@@ -1,13 +1,22 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import { MdLightMode, MdDarkMode } from "react-icons/md";
 import { themeChange } from "theme-change";
+import { AuthContext } from "../../Contexts/AuthProvider/AuthProvider";
+import { FaUser } from "react-icons/fa";
 
 const Header = () => {
   const [isDarkMode, setDarkMode] = useState(true);
+  const { user, logOut } = useContext(AuthContext);
 
   const handleTheme = () => {
     setDarkMode(!isDarkMode);
+  };
+
+  const handleLogOut = () => {
+    logOut()
+      .then(() => {})
+      .catch((error) => console.error(error));
   };
 
   useEffect(() => {
@@ -124,7 +133,7 @@ const Header = () => {
       <div className="navbar-end">
         <div
           onClick={handleTheme}
-          className="btn rounded-full text-lg"
+          className="btn rounded-full text-lg mr-5"
           data-choose-theme
         >
           {isDarkMode ? (
@@ -137,15 +146,46 @@ const Header = () => {
             </button>
           )}
         </div>
-        {/* <p className="mx-5 hidden"> Welcome! {"Moon"}</p> */}
-        <div className="hidden lg:block">
-          <Link className="btn mx-4" to="/login">
-            Login
-          </Link>
-          <Link to="/register" className="btn mr-4 invisible lg:visible">
-            Register
-          </Link>
-        </div>
+        <Link to="/private">
+          {user?.photoURL ? (
+            <div
+              className="tooltip tooltip-bottom"
+              data-tip={user?.displayName}
+            >
+              <img
+                className="rounded-full ring ring-success"
+                style={{ height: "50px", width: "50px" }}
+                src={user?.photoURL}
+                alt="avatar"
+              />
+            </div>
+          ) : (
+            <></>
+          )}
+        </Link>
+        <>
+          {user?.uid ? (
+            <>
+              <button
+                onClick={handleLogOut}
+                className="btn mx-4 invisible lg:visible"
+              >
+                Log Out
+              </button>
+            </>
+          ) : (
+            <>
+              <div className="hidden lg:block">
+                <Link className="btn mx-4" to="/login">
+                  Login
+                </Link>
+                <Link to="/register" className="btn mr-4 invisible lg:visible">
+                  Register
+                </Link>
+              </div>
+            </>
+          )}
+        </>
       </div>
     </div>
   );
