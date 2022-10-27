@@ -120,10 +120,13 @@ const Register = () => {
               </Link>
             </label>
           </div>
+
+          <p>{error}</p>
+
           <div className="form-control mt-6">
             <button className="btn btn-primary">Register</button>
           </div>
-          <p>{error}</p>
+
           <div className="py-3">
             <p>
               Already have an account? &nbsp;&nbsp;
